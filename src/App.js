@@ -1,60 +1,21 @@
-import CarrinhoProdutos from "./componentes/CarrinhoProdutos";
-import GradeProdutos from "./componentes/GradeProdutos";
-import BarraBusca from "./templates/BarraBusca";
-import Cabecalho from "./templates/Cabecalho";
-import { useEffect, useState } from "react";
+import TelaMenu from "./componentes/TelaMenu.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 function App() {
-
-  const [produtos, setProdutos] = useState([]);
-  const [listaCarrinho, setListaCarrinho] = useState([]);
-  const [exibirCarrinho, setExibirCarrinho] = useState(false);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((resposta) => resposta.json())
-      .then((produtos) => {
-        setProdutos(produtos);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (listaCarrinho.length > 0) {
-      localStorage.setItem('carrinho', JSON.stringify(listaCarrinho));
-    }
-  }, [listaCarrinho])
-
-  useEffect(() => {
-    const carrinhoLocalStorage = localStorage.getItem('carrinho');
-    if (carrinhoLocalStorage) {
-      const carrinhoSalvo = JSON.parse(carrinhoLocalStorage);
-      setListaCarrinho(carrinhoSalvo);
-    }
-  }, []);
-
   return (
     <div className="App">
-      <Cabecalho />
-      <BarraBusca
-        listaCarrinho={listaCarrinho}
-        setExibirCarrinho={setExibirCarrinho} />
-      {
-        exibirCarrinho ?
-          <CarrinhoProdutos
-            listaCarrinho={listaCarrinho}
-            setListaCarrinho={setListaCarrinho}
-            setExibirCarrinho={setExibirCarrinho} /> :
-          <GradeProdutos
-            listaCarrinho={listaCarrinho}
-            setListaCarrinho={setListaCarrinho}
-            listaProdutos={produtos} />
-      }
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<TelaMenu />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
 
+// npm install react-router-dom
 // Excluindo um repositório remoto: git remote rm origin
 // Apontando para um novo repositório: git remote add origin "nova URL"
 // Enviando os documentos para um repositório: git push --mirror "URL de origem"

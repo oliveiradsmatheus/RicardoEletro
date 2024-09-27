@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Table } from "react-bootstrap";
 
 export default function CarrinhoProdutos(props) {
@@ -51,10 +50,10 @@ export default function CarrinhoProdutos(props) {
                             props.listaCarrinho.map((item) => {
                                 return (
                                     <tr>
-                                        <td style={{width : "10%"}}><img style={{ width: "60px", height: "70px" }} src={item.image} /></td>
+                                        <td style={{ width: "10%" }}><img style={{ width: "60px", height: "70px" }} src={item.image} /></td>
                                         <td className="text-bold">{item.title}</td>
                                         <td>R$ {item.price.toFixed(2)}</td>
-                                        <td style={{width : "10%"}} className="text-center">
+                                        <td style={{ width: "10%" }} className="text-center">
                                             {item.qtde}
                                             {
                                                 /*<input // Não consegui alterar quantidade aqui
@@ -93,8 +92,8 @@ export default function CarrinhoProdutos(props) {
                                                 </div>
                                             }
                                         </td>
-                                        <td style={{width : "10%"}}>R$ {(item.qtde * item.price).toFixed(2)}</td>
-                                        <td style={{width : "10%"}}>
+                                        <td style={{ width: "10%" }}>R$ {(item.qtde * item.price).toFixed(2)}</td>
+                                        <td style={{ width: "10%" }}>
                                             <button className="text-center" onClick={() => {
                                                 excluirProduto(item);
                                             }} type='button'
