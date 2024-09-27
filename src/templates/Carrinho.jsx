@@ -18,7 +18,9 @@ export default function Carrinho(props) {
                 padding: '2px',
                 width: '40px'
             }} id='icone-carrinho'>
-                <button id='botao-carrinho'style={{
+                <button onClick={() => {
+                    props.setExibirCarrinho(true);
+                }} id='botao-carrinho' style={{
                     backgroundColor: "inherit",
                     border: '0px',
                 }
@@ -49,7 +51,8 @@ export default function Carrinho(props) {
                 <p style={{
                     margin: '0px',
                     padding: '0px',
-                }}>{props.qtdCarrinho || 0} item</p>
+                }}>
+                    {props.listaCarrinho.length} item(s)</p>
             </div>
             <div id='segurança' style={{
                 display: 'flex',
